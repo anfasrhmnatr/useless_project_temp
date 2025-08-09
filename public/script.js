@@ -5,12 +5,12 @@ const paniMessages = [
   "⚠️ Error 404: PANI not found.",
   "💡 Your request is being ignored.",
   "🕑 Please wait... forever.",
-  "📢 Ettinte Pani: Success! (Whatever that means...)"
+  
 ];
 
 const paniSounds = [
   "https://www.myinstants.com/media/sounds/windows-error.mp3",
-  "/public/aplausos_2.mp3"
+  
   
 ];
 
@@ -18,7 +18,7 @@ button.addEventListener("click", () => {
   const action = Math.floor(Math.random() * 5);
 
   switch (action) {
-    case 0: // Shake Screen
+    case 0: 
       document.body.classList.add("shake");
       setTimeout(() => document.body.classList.remove("shake"), 500);
        message.style.fontSize = "3rem";
@@ -26,15 +26,15 @@ button.addEventListener("click", () => {
       message.textContent = paniMessages[Math.floor(Math.random() * paniMessages.length)];
       break;
 
-    case 1: // Play Sound
+    case 1: 
       const sound = new Audio(paniSounds[Math.floor(Math.random() * paniSounds.length)]);
       sound.play();
        message.style.fontSize = "3rem";
       message.style.color = "red";
-      message.textContent = "🔊 Loud noise successfully delivered!";
+      message.textContent = "🔊";
       break;
 
-    case 2: // Fake Timer
+    case 2: 
     
       let time = Math.floor(Math.random() * 10) + 5;
       message.textContent = `⏳ Countdown: ${time}`;
@@ -47,29 +47,18 @@ button.addEventListener("click", () => {
     audio.play();
 
           clearInterval(interval);
-        } else {
-          time--;
-         
-          message.textContent = `⏳ Countdown: ${time}`;
-          if (time <= 0) {
-            message.textContent = "🎉 Time's up! Oh... nothing happened.";
-            let audio = new Audio("https://www.myinstants.com/media/sounds/mysound.mp3");
-    audio.play();
-            clearInterval(interval);
-          }
-        }
+        } 
       }, 1000);
       break;
 
-    case 3: // Redirect
+    case 3: 
       const uselessSites = [
-              "https://pointerpointer.com/",
-        "https://longdogechallenge.com/",
+         "https://longdogechallenge.com/",
         "/public/spiral.html",
         "/public/kashtam.html",
-        "/public/snake.html",
-        "/public/success.html",
-        "/public/qrcode.html"
+        "/public/snake.html",       
+        "/public/qrcode.html",
+        
       ];
       message.style.fontSize = "3rem";
       message.style.color = "red";
@@ -80,5 +69,36 @@ button.addEventListener("click", () => {
       break;
 
     
+     case 4: 
+      const uselessSites2 = [
+        "/public/nothing.html", 
+        "/public/success.html",
+        "/public/trytotouch.html",
+        
+      ];
+      message.style.fontSize = "3rem";
+      message.style.color = "red";
+      message.textContent = "🔀 Redirecting you to something useless...";
+      setTimeout(() => {
+        window.location.href = uselessSites2[Math.floor(Math.random() * uselessSites2.length)];
+      }, 2000);
+      break;
+
+     case 5: 
+      const uselessSites3 = [
+        "/public/nothing.html", 
+       
+        
+      ];
+      message.style.fontSize = "3rem";
+      message.style.color = "red";
+      message.textContent = "🔀 Redirecting you to something useless...";
+      setTimeout(() => {
+        window.location.href = uselessSites3[Math.floor(Math.random() * uselessSites3.length)];
+      }, 2000);
+      break;
+
+
+
   }
 });
