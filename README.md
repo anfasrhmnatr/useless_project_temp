@@ -17,13 +17,14 @@ A playful prank web app that wastes your time in the most creative ways possible
 Click the "8ൻ്റെ പണി കിട്ടാൻ ഇവിടെ അമർത്തുക" button and you might:
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+Useless 
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+Time waste 
 
 ## Technical Details
 ### Technologies/Components Used
+
 For Software:
 - Languages used are HTML5,CSS3 and JavaScript.
 - No heavy JS frameworks everything is plain JavaScript.
@@ -31,19 +32,15 @@ For Software:
 
 
 ### Implementation
-For Software:
-# Installation
-[commands]
 
-# Run
-[commands]
-
-### Project Documentation
 For Software:
+
 1.Code Editors / IDEs: Visual Studio Code
-
 2.Version Control: Git (to track changes), GitHub
 
+
+
+### Project Documentation
 
 
 # Screenshots (Add at least 3)
