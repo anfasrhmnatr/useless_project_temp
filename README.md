@@ -13,7 +13,8 @@
 - Member 2: Ardra p -College Of Engineering Thalassery
 
 ### Project Description
-[2-3 lines about what your project does]
+A playful prank web app that wastes your time in the most creative ways possible.
+Click the "8ൻ്റെ പണി കിട്ടാൻ ഇവിടെ അമർത്തുക" button and you might:
 
 ### The Problem (that doesn't exist)
 [What ridiculous problem are you solving?]
@@ -24,15 +25,10 @@
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- Languages used are HTML5,CSS3 and JavaScript.
+- No heavy JS frameworks everything is plain JavaScript.
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+
 
 ### Implementation
 For Software:
@@ -44,6 +40,11 @@ For Software:
 
 ### Project Documentation
 For Software:
+1.Code Editors / IDEs: Visual Studio Code
+
+2.Version Control: Git (to track changes), GitHub
+
+
 
 # Screenshots (Add at least 3)
 ![Screenshot1](Add screenshot 1 here with proper name)
