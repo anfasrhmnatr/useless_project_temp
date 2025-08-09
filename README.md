@@ -17,10 +17,10 @@ A playful prank web app that wastes your time in the most creative ways possible
 Click the "8ൻ്റെ പണി കിട്ടാൻ ഇവിടെ അമർത്തുക" button and you might:
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+Time 
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+Time waste
 
 ## Technical Details
 ### Technologies/Components Used
