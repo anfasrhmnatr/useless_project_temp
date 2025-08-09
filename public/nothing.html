@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Comedy Sound</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: black; /* Blank dark background */
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Direct audio link (replace with your Malayalam comedy sound)
+        const comedySound = new Audio("/public/madhavsuresh.mp3");
+        comedySound.preload = "auto";
+
+        let canPlay = true; // Prevent sound spam
+
+        document.addEventListener("mousemove", () => {
+            if (canPlay) {
+                comedySound.currentTime = 0; // Restart audio
+                comedySound.play();
+                canPlay = false;
+                setTimeout(() => canPlay = true, 1000); // Delay before next play
+            }
+        });
+    </script>
+</body>
+</html>
