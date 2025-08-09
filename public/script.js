@@ -54,10 +54,10 @@ button.addEventListener("click", () => {
     case 3: 
       const uselessSites = [
          
-        "/public/spiral.html",
-        "/public/kashtam.html",
-        "/public/snake.html",       
-        "/public/qrcode.html",
+        "./public/spiral.html",
+        "./public/kashtam.html",
+        "./public/snake.html",       
+        "./public/qrcode.html",
         
       ];
       message.style.fontSize = "3rem";
@@ -71,9 +71,9 @@ button.addEventListener("click", () => {
     
      case 4: 
       const uselessSites2 = [
-        "/public/nothing.html", 
-        "/public/success.html",
-        "/public/trytotouch.html",
+        "./public/nothing.html", 
+        "./public/success.html",
+        "./public/trytotouch.html",
         
       ];
       message.style.fontSize = "3rem";
@@ -86,7 +86,7 @@ button.addEventListener("click", () => {
 
      case 5: 
       const uselessSites3 = [
-        "/public/nothing.html", 
+        "./public/nothing.html", 
        
         
       ];
