@@ -69,6 +69,7 @@ button.addEventListener("click", () => {
         "/public/kashtam.html",
         "/public/snake.html",
         "/public/success.html",
+        "/public/qrcode.html"
       ];
       message.style.fontSize = "3rem";
       message.style.color = "red";
