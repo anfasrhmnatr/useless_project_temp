@@ -47,7 +47,7 @@ For Software:
 
 
 # Screenshots (Add at least 3)
-![Screenshot1](Screenshot 2025-08-09 160317.png)
+![Screenshot1](Homepage.png)
 Home page
 
 ![Screenshot2](Maze-Game-Sneaky-Fruit.png)
