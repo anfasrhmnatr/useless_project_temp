@@ -95,9 +95,9 @@ For Hardware:
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Anfas Rahman TR: Backend
+- Ardra p : Frontend
+
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
