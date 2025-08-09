@@ -86,7 +86,7 @@ button.addEventListener("click", () => {
 
      case 5: 
       const uselessSites3 = [
-        "./nothing.html", 
+        "/nothing.html", 
        
         
       ];
