@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paranoia Mode</title>
+  <style>
+    body {
+      background: black;
+      margin: 0;
+      overflow: hidden;
+    }
+    .qr {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 2px solid red;
+      z-index: 1000;
+    }
+    .center-text {
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: red;
+      font-size: 2rem;
+      font-family: monospace;
+      text-align: center;
+      z-index: 999;
+      animation: blink 0.5s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    #popup {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: black;
+      border: 2px solid red;
+      padding: 20px;
+      color: red;
+      font-family: monospace;
+      z-index: 2000;
+      width: 250px;
+      height: 120px;
+      box-shadow: 0 0 20px red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="center-text">DO NOT STARE TOO LONG</div>
+
+  <img class="qr" id="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://optical.toys/motion-aftereffect/" alt="QR Code">
+
+  <div id="popup">
+    <h3>⚠ SYSTEM ALERT ⚠</h3>
+    <p>We are watching you...</p>
+  </div>
+
+  <script>
+    const qr = document.getElementById("qr");
+
+    setInterval(() => {
+      qr.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+      qr.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+    }, 700);
+
+    setTimeout(() => {
+      document.getElementById("popup").style.display = "block";
+    }, 5000);
+
+
+    setTimeout(() => {
+      let flashing = setInterval(() => {
+        document.body.style.background = document.body.style.background === 'red' ? 'black' : 'red';
+      }, 200);
+      setTimeout(() => clearInterval(flashing), 6000);
+    }, 10000);
+
+    setTimeout(() => {
+      const audio = new Audio("https://www.soundjay.com/human/sounds/scream-01.mp3");
+      audio.play();
+    }, 8000);
+  </script>
+
+</body>
+</html>
