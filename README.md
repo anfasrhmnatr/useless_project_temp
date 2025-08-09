@@ -47,11 +47,11 @@ For Software:
 
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot1](Screenshot 2025-08-09 160317.png)
+Home page
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot2](Maze-Game-Sneaky-Fruit.png)
+Funny game
 
 ![Screenshot3](Add screenshot 3 here with proper name)
 *Add caption explaining what this shows*
