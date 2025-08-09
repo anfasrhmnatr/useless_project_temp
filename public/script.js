@@ -66,6 +66,9 @@ button.addEventListener("click", () => {
               "https://pointerpointer.com/",
         "https://longdogechallenge.com/",
         "/public/spiral.html",
+        "/public/kashtam.html",
+        "/public/snake.html",
+        "/public/success.html",
       ];
       message.style.fontSize = "3rem";
       message.style.color = "red";
