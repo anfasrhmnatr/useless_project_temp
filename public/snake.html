@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Maze Game - Sneaky Fruit</title>
+<style>
+  body { background: black; margin: 0; text-align: center; color: white; }
+  canvas { display: block; margin: auto; background: black; }
+  button { margin: 10px; padding: 10px 20px; font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>If you have guts just solve it</h1>
+<button id="solveBtn">Correct ?</button>
+<canvas id="gameCanvas"></canvas>
+<p id="status"></p>
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+const statusText = document.getElementById("status");
+
+const cols = 15;
+const rows = 15;
+const cellSize = 45;
+
+canvas.width = cols * cellSize;
+canvas.height = rows * cellSize;
+
+class Cell {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.walls = { top: true, right: true, bottom: true, left: true };
+    this.visited = false;
+  }
+  draw() {
+    const x = this.x * cellSize;
+    const y = this.y * cellSize;
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 3;
+    if (this.walls.top) { ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + cellSize, y); ctx.stroke(); }
+    if (this.walls.right) { ctx.beginPath(); ctx.moveTo(x + cellSize, y); ctx.lineTo(x + cellSize, y + cellSize); ctx.stroke(); }
+    if (this.walls.bottom) { ctx.beginPath(); ctx.moveTo(x + cellSize, y + cellSize); ctx.lineTo(x, y + cellSize); ctx.stroke(); }
+    if (this.walls.left) { ctx.beginPath(); ctx.moveTo(x, y + cellSize); ctx.lineTo(x, y); ctx.stroke(); }
+  }
+}
+
+const grid = [];
+for (let y = 0; y < rows; y++) {
+  for (let x = 0; x < cols; x++) {
+    grid.push(new Cell(x, y));
+  }
+}
+
+function index(x, y) {
+  if (x < 0 || y < 0 || x >= cols || y >= rows) return -1;
+  return x + y * cols;
+}
+
+function getNeighbors(cell) {
+  const neighbors = [];
+  const top = grid[index(cell.x, cell.y - 1)];
+  const right = grid[index(cell.x + 1, cell.y)];
+  const bottom = grid[index(cell.x, cell.y + 1)];
+  const left = grid[index(cell.x - 1, cell.y)];
+
+  if (top && !top.visited) neighbors.push(top);
+  if (right && !right.visited) neighbors.push(right);
+  if (bottom && !bottom.visited) neighbors.push(bottom);
+  if (left && !left.visited) neighbors.push(left);
+
+  return neighbors;
+}
+
+let current = grid[0];
+const stack = [];
+
+function removeWalls(a, b) {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  if (dx === 1) { a.walls.left = false; b.walls.right = false; }
+  else if (dx === -1) { a.walls.right = false; b.walls.left = false; }
+  if (dy === 1) { a.walls.top = false; b.walls.bottom = false; }
+  else if (dy === -1) { a.walls.bottom = false; b.walls.top = false; }
+}
+
+function generateMaze() {
+  current.visited = true;
+  const neighbors = getNeighbors(current);
+
+  if (neighbors.length > 0) {
+    const next = neighbors[Math.floor(Math.random() * neighbors.length)];
+    stack.push(current);
+    removeWalls(current, next);
+    current = next;
+    generateMaze();
+  } else if (stack.length > 0) {
+    current = stack.pop();
+    generateMaze();
+  }
+}
+
+generateMaze();
+
+// Fruit position
+const fruits = ["🍎","🍌","🍇","🍒","🥝"];
+let fruit = { x: cols - 3, y: rows - 3, emoji: fruits[Math.floor(Math.random() * fruits.length)] };
+
+// BFS helper
+function bfsPath(start, end) {
+  let queue = [{x: start.x, y: start.y, path: []}];
+  let visited = new Set();
+  while (queue.length) {
+    let node = queue.shift();
+    let key = `${node.x},${node.y}`;
+    if (visited.has(key)) continue;
+    visited.add(key);
+
+    if (node.x === end.x && node.y === end.y) return node.path.concat({x: node.x, y: node.y});
+
+    let cell = grid[index(node.x, node.y)];
+    if (!cell.walls.top) queue.push({x: node.x, y: node.y - 1, path: node.path.concat({x: node.x, y: node.y})});
+    if (!cell.walls.right) queue.push({x: node.x + 1, y: node.y, path: node.path.concat({x: node.x, y: node.y})});
+    if (!cell.walls.bottom) queue.push({x: node.x, y: node.y + 1, path: node.path.concat({x: node.x, y: node.y})});
+    if (!cell.walls.left) queue.push({x: node.x - 1, y: node.y, path: node.path.concat({x: node.x, y: node.y})});
+  }
+  return null;
+}
+
+// Block 3 hidden approach points (not directly next to fruit)
+let approaches = bfsPath({x:0, y:0}, fruit);
+if (approaches) {
+  let fakeEntrances = [
+    approaches[Math.floor(approaches.length * 0.5)], // middle path
+    approaches[Math.floor(approaches.length * 0.7)], // later path
+    approaches[Math.floor(approaches.length * 0.85)] // near fruit
+  ];
+  fakeEntrances.forEach(blockPoint => {
+    let cell = grid[index(blockPoint.x, blockPoint.y)];
+    let neighbors = [
+      grid[index(cell.x, cell.y - 1)],
+      grid[index(cell.x + 1, cell.y)],
+      grid[index(cell.x, cell.y + 1)],
+      grid[index(cell.x - 1, cell.y)]
+    ].filter(n => n);
+    neighbors.forEach(nb => {
+      cell.walls[getWallDirection(cell, nb)] = true;
+      nb.walls[getWallDirection(nb, cell)] = true;
+    });
+  });
+}
+
+function getWallDirection(a, b) {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  if (dx === 1) return "right";
+  if (dx === -1) return "left";
+  if (dy === 1) return "bottom";
+  if (dy === -1) return "top";
+}
+
+let player = { x: 0, y: 0 };
+let target = { x: 0, y: 0 };
+
+canvas.addEventListener("mousemove", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  target.x = Math.floor((e.clientX - rect.left) / cellSize);
+  target.y = Math.floor((e.clientY - rect.top) / cellSize);
+});
+
+function updatePlayer() {
+  if (player.x === target.x && player.y === target.y) return;
+  const cell = grid[index(player.x, player.y)];
+  if (target.x > player.x && !cell.walls.right) player.x++;
+  else if (target.x < player.x && !cell.walls.left) player.x--;
+  else if (target.y > player.y && !cell.walls.bottom) player.y++;
+  else if (target.y < player.y && !cell.walls.top) player.y--;
+}
+
+function drawPlayer() {
+  ctx.fillStyle = "lime";
+  ctx.beginPath();
+  ctx.arc(player.x * cellSize + cellSize / 2, player.y * cellSize + cellSize / 2, cellSize / 3, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawFruit() {
+  ctx.font = `${cellSize * 0.8}px Arial`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(fruit.emoji, fruit.x * cellSize + cellSize / 2, fruit.y * cellSize + cellSize / 2);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  grid.forEach(cell => cell.draw());
+  drawFruit();
+  drawPlayer();
+}
+
+function gameLoop() {
+  updatePlayer();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+document.getElementById("solveBtn").addEventListener("click", () => {
+  let solvePath = bfsPath(player, fruit);
+  if (solvePath) {
+    statusText.textContent = "Path found! Moving player...";
+    let i = 0;
+    let interval = setInterval(() => {
+      if (i < solvePath.length) {
+        player.x = solvePath[i].x;
+        player.y = solvePath[i].y;
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 150);
+  } else {
+    statusText.textContent = "No path found!";
+  }
+});
+
+gameLoop();
+</script>
+</body>
+</html>
