@@ -53,8 +53,15 @@ Home page
 ![Screenshot2](Maze-Game-Sneaky-Fruit.png)
 Funny game
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot3](touchme.png)
+funny game not able to touch
+
+![Screenshot3](timerstuck.png)
+fake countdown
+
+![Screenshot3](Document.png)
+Oru paniyum ille?
+
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
