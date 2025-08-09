@@ -16,7 +16,7 @@ body {
     overflow: hidden;
 }
 
-/* Heading */
+
 h1 {
     font-family: "Manjari", sans-serif;
     font-weight: 700;
@@ -33,7 +33,7 @@ h1 {
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Button */
+
 button {
     background: linear-gradient(45deg, #ff4b2b, #ff416c);
     border: none;
@@ -53,7 +53,7 @@ button:hover {
     box-shadow: 0 8px 30px rgba(183, 31, 18, 0.852);
 }
 
-/* Star Animation */
+
 .warning {
     display: inline-block;
     font-size: clamp(3rem, 10vw, 7rem);
@@ -84,7 +84,7 @@ button:hover {
     to { transform: rotate(360deg); }
 }
 
-/* Responsive Layout */
+
 @media (max-width: 768px) {
     body {
         padding: 20px;
