@@ -53,7 +53,7 @@ button.addEventListener("click", () => {
 
     case 3: 
       const uselessSites = [
-         "https://longdogechallenge.com/",
+         
         "/public/spiral.html",
         "/public/kashtam.html",
         "/public/snake.html",       
