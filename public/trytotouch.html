@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>😵 irritating </title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Comic Sans MS, cursive;
+      overflow: hidden;
+      animation: flash 0.3s infinite alternate;
+    }
+
+    @keyframes flash {
+      0%   { background-color: rgb(21, 182, 59); color: black; }
+      50%  { background-color: rgb(159, 26, 159); color: white; }
+      100% { background-color: rgb(77, 129, 13); color: red; }
+    }
+
+    .center-text {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      font-weight: bold;
+      animation: zoom 1s infinite alternate ease-in-out;
+      z-index: 1000;
+    }
+
+    @keyframes zoom {
+      from { transform: scale(1); }
+      to { transform: scale(2); }
+    }
+
+    .floating-emoji {
+      position: absolute;
+      font-size: 40px;
+      pointer-events: none;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .annoy-button {
+      position: absolute;
+      top: 60%;
+      left: 40%;
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: rgb(17, 5, 2);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      animation: shake 0.5s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(2px, -2px); }
+      50% { transform: translate(-2px, 2px); }
+      75% { transform: translate(2px, 2px); }
+      100% { transform: translate(-2px, -2px); }
+    }
+  </style>
+</head>
+<body>
+    
+  <button class="annoy-button" id="annoyBtn">Click me if you can</button>
+
+  <script>
+    const emojiList = ["😂", "😵", "🤯", "🌀", "😡", "💀", "😫", "😈", "🙃"];
+    const totalEmojis = 50;
+
+    for (let i = 0; i < totalEmojis; i++) {
+      const emoji = document.createElement("div");
+      emoji.className = "floating-emoji";
+      emoji.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
+      emoji.style.left = `${Math.random() * 100}vw`;
+      emoji.style.animationDuration = `${2 + Math.random() * 5}s`;
+      document.body.appendChild(emoji);
+    }
+
+
+    const button = document.getElementById("annoyBtn");
+    button.addEventListener("mouseover", () => {
+      button.style.top = `${Math.random() * 90}vh`;
+      button.style.left = `${Math.random() * 90}vw`;
+    });
+
+
+    setInterval(() => {
+      const popup = window.open("", "", `width=200,height=100,top=${Math.random()*screen.height},left=${Math.random()*screen.width}`);
+      if (popup) {
+        popup.document.write("<h3 style='font-family: Comic Sans MS;'>😵‍💫 Gotcha!</h3>");
+        setTimeout(() => popup.close(), 2000);
+      }
+    }, 4000);
+
+
+  </script>
+
+</body>
+</html>
