@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Totally Important Loading...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .loading {
+      font-size: 2em;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0.5; }
+    }
+    .success {
+      font-size: 2.5em;
+      text-align: center;
+      animation: pop 0.5s ease forwards;
+    }
+    @keyframes pop {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="content" class="loading">Loading, please wait...</div>
+
+  <!-- Clap sound -->
+  <audio id="clapSound" src="/public/aplausos_2.mp3" preload="auto"></audio>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("content").className = "success";
+      document.getElementById("content").textContent = "🎉 Successfully wasted your time 👏";
+      document.getElementById("clapSound").play();
+    }, 8000); 
+  </script>
+</body>
+</html>
